@@ -1,0 +1,32 @@
+%{
+#include"y.tab.h"
+%}
+%%
+[a-z] {return alp;}
+[0-9] {return dig;}
+. {return yytext[0];}
+%%
+
+
+%{
+#include<stdio.h>
+extern int yyparse();
+extern int yylex();
+%}
+%token dig alp
+%%
+st:id {printf("Valid\n"); exit(0);}
+;
+id:id dig
+|id alp
+|alp
+;
+%%
+main()
+{
+yyparse();
+}
+yyerror()
+{
+printf("Invalid\n");
+}

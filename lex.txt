@@ -1,0 +1,108 @@
+%{
+int w=0,l=0,s=0;
+%}
+%%
+
+[ ] s++,w++;
+[ \n] l++,w++;
+%%
+
+main()
+{
+        printf("Enter STring");
+        yylex();
+        printf("\nWOrds:%d",w);
+        printf("\nSpaces:%d",s);
+        printf("\nLines:%d",l);
+
+}
+
+
+
+
+
+int key=0;
+%}
+%%
+
+
+^auto|double|int|struct|break|else|long|switch|case|enum|register|typedef|char|extern|return|union|const|float|short|unsigned|continue|for|signed|void|default|goto|sizeof|volatile|do|if|static|while$ key++;
+%%
+
+main()
+{
+        printf("\nString:");
+        yylex();
+        if(key!=0)
+        printf("\nIS KEYWORD");
+        else
+        printf("NOT");
+
+}
+
+
+
+
+
+
+%}
+%%
+
+^[a-zA-Z_]([a-zA-Z0-9_])* id++;
+%%
+
+main()
+{
+        printf("String");
+        yylex();
+        if(id!=0)
+        {
+                printf("IS IDENTIFIER");
+        }
+        else
+        {
+                printf("NOT");
+        }
+}
+
+
+
+
+
+
+%{
+int v=0;
+int c=0;
+%}
+%%
+
+[ \t\n]+
+[aeiouAEIOU] v++;
+[a-zA-Z] c++;
+%%
+
+main()
+{
+        printf("\nEnter any string:");
+        yylex();
+        printf("\nNo. of vowels=%d",v);
+        printf("\nNo. of consonants=%d",c);
+}
+
+
+
+
+
+
+%{
+int x;
+%}
+%%
+^[+|-][0-9]+$ printf("\n%s.000000",yytext);
+%%
+
+main()
+{
+        yylex();
+
+}
